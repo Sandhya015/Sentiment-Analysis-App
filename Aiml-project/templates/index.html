@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set background color and font */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1c1c1c; /* Blackish background */
+        }
+
+        /* Container styling */
+        .container {
+            background: #333333; /* Darker grey for a contrast */
+            padding: 40px;
+            width: 50%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Heading styling */
+        h1 {
+            color: #f1f1f1; /* Lighter text for visibility */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        /* Form styling */
+        form {
+            margin-top: 20px;
+        }
+
+        /* Input fields styling */
+        input[type="text"], input[type="file"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #666666; /* Soft borders */
+            border-radius: 6px;
+            background-color: #2b2b2b; /* Slightly lighter background for inputs */
+            color: #f1f1f1; /* White text */
+            font-size: 16px;
+        }
+
+        /* Submit button styling */
+        input[type="submit"] {
+            background-color: #4caf50; /* Green button */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Slightly darker green on hover */
+        }
+
+        /* Result container styling */
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #444444; /* Dark grey result background */
+            border-radius: 6px;
+            color: #f1f1f1; /* Light text */
+            font-size: 18px;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis</h1>
+        <form action="/analyze" method="POST" enctype="multipart/form-data">
+            <label for="text" style="color: #f1f1f1;">Enter Text:</label>
+            <input type="text" name="text" id="text" placeholder="Type your text here...">
+            
+            <label for="image" style="color: #f1f1f1;">Upload an Image:</label>
+            <input type="file" name="image" id="image">
+            
+            <input type="submit" value="Analyze Sentiment">
+        </form>
+        
+        {% if sentiment %}
+            <div class="result">
+                <p><strong>Input:</strong> {{ input_text }}</p>
+                <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
